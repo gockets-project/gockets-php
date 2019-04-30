@@ -5,7 +5,7 @@
   "description": "PHP client for Gockets https://github.com/gockets-project/gockets",
   "keywords": ["gockets", "web socket", "socket", "php socket"],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "ext-json": "*",
     "guzzlehttp/guzzle": "^6.3"
   },
