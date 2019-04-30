@@ -1,0 +1,32 @@
+{
+  "name": "gockets-project/gockets-php",
+  "type": "library",
+  "version": "0.1.0",
+  "description": "PHP client for Gockets https://github.com/gockets-project/gockets",
+  "keywords": ["gockets", "web socket", "socket", "php socket"],
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Gockets\\": "src/Gockets"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Gockets\\": "tests/Gockets"
+    }
+  },
+  "authors": [
+    {
+      "name": "Artem Zakharchenko",
+      "email": "artz.relax@gmail.com"
+    }
+  ]
+}
