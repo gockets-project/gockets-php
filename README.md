@@ -1,5 +1,5 @@
 # Gockets
-[**Gockets**]((https://github.com/gockets-project/gockets#gockets)) is daemon written in Golang to give languages, like PHP a middleware for REST-oriented communication with Websockets.
+[**Gockets**](https://github.com/gockets-project/gockets#gockets) is daemon written in Golang to give languages, like PHP a middleware for REST-oriented communication with Websockets.
 
 # Gockets PHP
 
