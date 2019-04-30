@@ -14,7 +14,7 @@ This library provides implemented and ready to use interface for gockets daemon.
 
 ## Installation via Composer
 
-`composer require gockets/gockets-php`
+`composer require gockets-project/gockets-php`
 
 ## Quickstart
 
