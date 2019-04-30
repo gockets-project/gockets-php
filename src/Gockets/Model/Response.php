@@ -23,28 +23,13 @@ final class Response
         return $this->success;
     }
 
-    public function setSuccess(bool $success): void
-    {
-        $this->success = $success;
-    }
-
     public function getType(): string
     {
         return $this->type;
     }
 
-    public function setType(string $type): void
-    {
-        $this->type = $type;
-    }
-
     public function getMessage(): string
     {
         return $this->message;
-    }
-
-    public function setMessage(string $message): void
-    {
-        $this->message = $message;
     }
 }

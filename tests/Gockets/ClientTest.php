@@ -84,6 +84,7 @@ final class ClientTest extends TestCase
 
         Assert::assertTrue($response->getSuccess());
         Assert::assertEquals('INF', $response->getType());
+        Assert::assertNotEmpty($response->getMessage());
     }
 
     /**
@@ -95,6 +96,7 @@ final class ClientTest extends TestCase
 
         Assert::assertTrue($response->getSuccess());
         Assert::assertEquals('OK', $response->getType());
+        Assert::assertNotEmpty($response->getMessage());
 
         return $channel;
     }
@@ -106,6 +108,46 @@ final class ClientTest extends TestCase
     {
         $this->expectException(ChannelNotFoundException::class);
 
-        $response = self::$client->show($channel->getPublisherToken());
+        self::$client->show($channel->getPublisherToken());
+    }
+
+    public function testChannelPrepareWithoutHook(): void
+    {
+        $channel = self::$client->prepare();
+
+        Assert::assertNotEmpty($channel->getPublisherToken());
+        Assert::assertNotEmpty($channel->getSubscriberToken());
+        Assert::assertNull($channel->getHookUrl());
+        Assert::assertEquals(0, $channel->getListeners());
+    }
+
+    public function testPushDataToNotExistingChannel(): void
+    {
+        $data = [
+            'data' => 'content',
+        ];
+
+        try {
+            self::$client->publish($data, 'some-not-existing-publisher-token');
+        } catch (ChannelNotFoundException $exception) {
+            $response = $exception->getResponse();
+
+            Assert::assertFalse($response->getSuccess());
+            Assert::assertEquals('ERR', $response->getType());
+            Assert::assertNotEmpty($response->getMessage());
+        }
+    }
+
+    public function testCloseNotExistingChannel(): void
+    {
+        try {
+            self::$client->close('some-not-existing-publisher-token');
+        } catch (ChannelNotFoundException $exception) {
+            $response = $exception->getResponse();
+
+            Assert::assertFalse($response->getSuccess());
+            Assert::assertEquals('ERR', $response->getType());
+            Assert::assertNotEmpty($response->getMessage());
+        }
     }
 }

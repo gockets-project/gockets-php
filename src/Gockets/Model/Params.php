@@ -25,18 +25,8 @@ final class Params
         return $this->host;
     }
 
-    public function setHost(string $host): void
-    {
-        $this->host = $host;
-    }
-
     public function getPort(): string
     {
         return $this->port;
-    }
-
-    public function setPort(string $port): void
-    {
-        $this->port = $port;
     }
 }

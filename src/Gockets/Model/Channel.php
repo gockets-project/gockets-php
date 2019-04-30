@@ -31,38 +31,18 @@ final class Channel
         return $this->publisherToken;
     }
 
-    public function setPublisherToken(string $publisherToken): void
-    {
-        $this->publisherToken = $publisherToken;
-    }
-
     public function getSubscriberToken(): string
     {
         return $this->subscriberToken;
     }
 
-    public function setSubscriberToken(string $subscriberToken): void
-    {
-        $this->subscriberToken = $subscriberToken;
-    }
-
-    public function getHookUrl(): string
+    public function getHookUrl(): ?string
     {
         return $this->hookUrl;
-    }
-
-    public function setHookUrl(string $hookUrl): void
-    {
-        $this->hookUrl = $hookUrl;
     }
 
     public function getListeners(): int
     {
         return $this->listeners;
-    }
-
-    public function setListeners(int $listeners): void
-    {
-        $this->listeners = $listeners;
     }
 }
