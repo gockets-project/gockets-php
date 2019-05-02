@@ -18,7 +18,6 @@ use Gockets\Model\Response;
  * Implements available Gockets methods.
  *
  * @package Gockets
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 class Client implements GocketsInterface
 {

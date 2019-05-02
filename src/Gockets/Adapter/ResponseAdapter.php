@@ -5,6 +5,11 @@ namespace Gockets\Adapter;
 use Gockets\Contract\AdapterInterface;
 use Gockets\Model\Response;
 
+/**
+ * Response Adapter
+ *
+ * Converts raw json into Response object.
+ */
 final class ResponseAdapter implements AdapterInterface
 {
     /**

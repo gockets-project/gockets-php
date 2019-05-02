@@ -4,9 +4,6 @@ namespace Gockets\Model;
 
 /**
  * Channel object
- *
- * @package Gockets\Model
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 final class Channel
 {

@@ -6,9 +6,6 @@ namespace Gockets\Contract;
  * Adapter Interface
  *
  * Describes helper methods for converting json raw objects to defined class object.
- *
- * @package Gockets\Contract
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 interface AdapterInterface
 {

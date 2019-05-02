@@ -10,9 +10,6 @@ use Gockets\Model\Response;
  * Gockets Interface
  *
  * Describes available Gockets methods.
- *
- * @package Gockets\Contract
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 interface GocketsInterface
 {

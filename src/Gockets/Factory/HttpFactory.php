@@ -9,9 +9,6 @@ use GuzzleHttp\Client as HttpClient;
  * Http Client Factory
  *
  * Responsible for creating instance of HTTP client.
- *
- * @package Gockets\Factory
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 class HttpFactory
 {

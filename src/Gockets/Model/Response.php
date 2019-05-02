@@ -2,6 +2,9 @@
 
 namespace Gockets\Model;
 
+/**
+ * Basic server response
+ */
 final class Response
 {
     private $success;

@@ -7,8 +7,6 @@ use Throwable;
 
 /**
  * Basic library exception
- *
- * @package Gockets\Exception
  */
 class GocketsException extends \Exception
 {

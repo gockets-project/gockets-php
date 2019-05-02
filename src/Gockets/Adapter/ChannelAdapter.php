@@ -6,6 +6,11 @@ use Gockets\Contract\AdapterInterface;
 use Gockets\Model\Channel;
 use stdClass;
 
+/**
+ * Channel Adapter
+ *
+ * Converts raw json into Channel object.
+ */
 final class ChannelAdapter implements AdapterInterface
 {
     /**

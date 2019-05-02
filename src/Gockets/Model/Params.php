@@ -4,9 +4,6 @@ namespace Gockets\Model;
 
 /**
  * Params for HTTP client
- *
- * @package Gockets\Model
- * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
 final class Params
 {
