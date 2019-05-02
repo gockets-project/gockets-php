@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/gockets-project/gockets-php/v/stable)](https://packagist.org/packages/gockets-project/gockets-php)
 [![Build Status](https://travis-ci.org/gockets-project/gockets-php.svg?branch=master)](https://travis-ci.org/gockets-project/gockets-php)
 [![Coverage Status](https://coveralls.io/repos/github/gockets-project/gockets-php/badge.svg?branch=master)](https://coveralls.io/github/gockets-project/gockets-php?branch=master)
+[![Code Quality](https://scrutinizer-ci.com/g/gockets-project/gockets-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gockets-project/gockets-php/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/184272241/shield?branch=master&style=flat)](https://github.styleci.io/repos/184272241)
 
 [**Gockets**](https://github.com/gockets-project/gockets#gockets) is daemon written in Golang to give languages, like PHP a middleware for REST-oriented communication with Websockets.
