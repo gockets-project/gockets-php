@@ -57,7 +57,7 @@ class Client implements GocketsInterface
         } else {
             $options = [
                 \GuzzleHttp\RequestOptions::JSON => [
-                    'subscriber_message_hook_url' => is_null($hookUrl) ? '' : $hookUrl,
+                    'subscriber_message_hook_url' => $hookUrl,
                 ],
             ];
         }
