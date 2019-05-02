@@ -30,6 +30,9 @@ coding_style:
         braces:
             classes_functions:
                 class: new-line
+        spaces:
+            within:
+                brackets: false
         upper_lower_casing:
             keywords:
                 general: lower
