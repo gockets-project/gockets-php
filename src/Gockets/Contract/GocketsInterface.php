@@ -4,6 +4,7 @@ namespace Gockets\Contract;
 
 use Gockets\Exception\ChannelNotFoundException;
 use Gockets\Model\Channel;
+use Gockets\Model\ChannelOptions;
 use Gockets\Model\Response;
 
 /**
@@ -16,10 +17,10 @@ interface GocketsInterface
     /**
      * Prepares channel with specifyed (optionally) hook URL.
      *
-     * @param string|null $hookUrl
+     * @param ChannelOptions|null $channelOptions
      * @return Channel
      */
-    public function prepare(?string $hookUrl = null): Channel;
+    public function prepare(?ChannelOptions $channelOptions = null): Channel;
 
     /**
      * Get specific channel.
@@ -36,6 +37,15 @@ interface GocketsInterface
      * @return array|Channel[]
      */
     public function showAll(): array;
+
+    /**
+     * Edit specific channel (change hook url or tag).
+     *
+     * @param string $publisherToken Publisher token of channel to update
+     * @param ChannelOptions $channelOptions
+     * @return Channel
+     */
+    public function edit(string $publisherToken, ChannelOptions $channelOptions): Channel;
 
     /**
      * Pushes data to a Websocket connection passed in body of request.

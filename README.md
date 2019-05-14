@@ -37,12 +37,16 @@ $client = new Client(new Params($host, $port));
 
 #### Prepare channel
 
-Creates new channel.
+Creates new channel. Can accept optional argument instance of `Gockets\Model\ChannelOptions`.
 
 ```php
-// Using variable from previous example
+use Gockets\Model\ChannelOptions;
 
-$channel = $client->prepare();
+$options = new ChannelOptions('http://localhost/hook.php', 'tag');
+
+// Using $client from previous sample
+
+$channel = $client->prepare($options);
 ```
 
 `Gockets\Model\Сhannel` example:
@@ -51,7 +55,8 @@ $channel = $client->prepare();
 object(Gockets\Model\Channel) {
   ["publisherToken":private] => string(32) "f177965656399535ea241a3da40dfcbf"
   ["subscriberToken":private] => string(32) "90b09a2e2d43c83ed907854a46c710fd"
-  ["hookUrl":private] => NULL
+  ["hookUrl":private] => string(25) "http://localhost/hook.php"
+  ["tag":private] => string(3) "tag"
   ["listeners":private] => int(0)
 }
 ```
@@ -72,6 +77,18 @@ Returns empty or filled with `Gockets\Model\Сhannel` objects array.
 
 ```php
 $channels = $client->showAll();
+```
+
+#### Edit channel
+
+Use to modify specific channel attributes (change hook url or tag).
+
+```php
+use Gockets\Model\ChannelOptions;
+
+$options = new ChannelOptions('http://localhost/new_hook.php', 'someApplication|tagged');
+
+$updatedChannel = $client->update($channel->getPublisherToken(), $options);
 ```
 
 #### Publish data

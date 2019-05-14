@@ -13,13 +13,21 @@ final class Channel
 
     private $hookUrl;
 
+    private $tag;
+
     private $listeners;
 
-    public function __construct(string $publisherToken, string $subscriberToken, ?string $hookUrl = null, int $listeners = 0)
-    {
+    public function __construct(
+        string $publisherToken,
+        string $subscriberToken,
+        ?string $hookUrl = null,
+        ?string $tag = null,
+        int $listeners = 0
+    ) {
         $this->publisherToken = $publisherToken;
         $this->subscriberToken = $subscriberToken;
         $this->hookUrl = $hookUrl;
+        $this->tag = $tag;
         $this->listeners = $listeners;
     }
 
@@ -36,6 +44,11 @@ final class Channel
     public function getHookUrl(): ?string
     {
         return $this->hookUrl;
+    }
+
+    public function getTag(): ?string
+    {
+        return $this->tag;
     }
 
     public function getListeners(): int

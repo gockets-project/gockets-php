@@ -9,6 +9,7 @@ use Gockets\Contract\GocketsInterface;
 use Gockets\Exception\ChannelNotFoundException;
 use Gockets\Factory\HttpFactory;
 use Gockets\Model\Channel;
+use Gockets\Model\ChannelOptions;
 use Gockets\Model\Params;
 use Gockets\Model\Response;
 
@@ -49,15 +50,23 @@ class Client implements GocketsInterface
         self::$http = HttpFactory::createHttpClient($params);
     }
 
-    public function prepare(?string $hookUrl = null): Channel
+    public function prepare(?ChannelOptions $channelOptions = null): Channel
     {
-        if (is_null($hookUrl)) {
+        if (is_null($channelOptions)) {
             $options = [];
         } else {
+            $body = [];
+
+            if (!empty($channelOptions->getHookUrl())) {
+                $body['subscriber_message_hook_url'] = $channelOptions->getHookUrl();
+            }
+
+            if (!empty($channelOptions->getTag())) {
+                $body['tag'] = $channelOptions->getTag();
+            }
+
             $options = [
-                \GuzzleHttp\RequestOptions::JSON => [
-                    'subscriber_message_hook_url' => $hookUrl,
-                ],
+                \GuzzleHttp\RequestOptions::JSON => $body,
             ];
         }
 
@@ -68,7 +77,7 @@ class Client implements GocketsInterface
 
     public function show(string $publisherToken): Channel
     {
-        $result = self::$http->get("channel/{$publisherToken}");
+        $result = self::$http->get("channel/show/{$publisherToken}");
 
         if ($result->getStatusCode() === 404) {
             throw new ChannelNotFoundException($result->getBody()->getContents());
@@ -79,9 +88,23 @@ class Client implements GocketsInterface
 
     public function showAll(): array
     {
-        $result = self::$http->get('channel');
+        $result = self::$http->get('channel/show');
 
         return $this->channelAdapter->convertJsonArray($result->getBody()->getContents());
+    }
+
+    public function edit(string $publisherToken, ChannelOptions $channelOptions): Channel
+    {
+        $options = [
+            \GuzzleHttp\RequestOptions::JSON => [
+                'subscriber_message_hook_url' => $channelOptions->getHookUrl(),
+                'tag' => $channelOptions->getTag(),
+            ],
+        ];
+
+        $result = self::$http->patch("channel/edit/{$publisherToken}", $options);
+
+        return $this->channelAdapter->convertJson($result->getBody()->getContents());
     }
 
     public function publish($data, string $publisherToken): Response

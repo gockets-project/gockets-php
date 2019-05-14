@@ -1,0 +1,6 @@
+ managementProtect: true
+ allowedHostnames:
+  - localhost
+ pingInterval: 10
+ logLevel: 3
+ port: 8844

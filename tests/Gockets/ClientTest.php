@@ -5,6 +5,7 @@ namespace Tests\Gockets;
 use Gockets\Client;
 use Gockets\Exception\ChannelNotFoundException;
 use Gockets\Model\Channel;
+use Gockets\Model\ChannelOptions;
 use Gockets\Model\Params;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +20,7 @@ final class ClientTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         if (self::isRunningOnLinux()) {
-            self::executeInBackground(__DIR__ . '/../../bin/main');
+            self::executeInBackground(__DIR__ . '/../../bin/main -configPath ' . __DIR__ . '/../../bin/config.yml');
             self::$client = new Client(new Params());
         }
     }
@@ -40,11 +41,14 @@ final class ClientTest extends TestCase
 
     public function testChannelPrepare(): Channel
     {
-        $channel = self::$client->prepare('domain.com');
+        $options = new ChannelOptions('http://localhost/hook.php', 'tag');
+
+        $channel = self::$client->prepare($options);
 
         Assert::assertNotEmpty($channel->getPublisherToken());
         Assert::assertNotEmpty($channel->getSubscriberToken());
-        Assert::assertEquals('domain.com', $channel->getHookUrl());
+        Assert::assertEquals('http://localhost/hook.php', $channel->getHookUrl());
+        Assert::assertEquals('tag', $channel->getTag());
         Assert::assertEquals(0, $channel->getListeners());
 
         return $channel;
@@ -69,6 +73,21 @@ final class ClientTest extends TestCase
 
         Assert::assertCount(1, $channels);
         Assert::assertEquals($channel, $channels[0]);
+    }
+
+    /**
+     * @depends testChannelPrepare
+     */
+    public function testEdit(Channel $channel): void
+    {
+        $options = new ChannelOptions('http://localhost/new_hook.php', 'someApplication|tagged');
+
+        $updatedChannel = self::$client->edit($channel->getPublisherToken(), $options);
+
+        Assert::assertEquals($channel->getPublisherToken(), $updatedChannel->getPublisherToken());
+        Assert::assertEquals($channel->getSubscriberToken(), $updatedChannel->getSubscriberToken());
+        Assert::assertEquals('http://localhost/new_hook.php', $updatedChannel->getHookUrl());
+        Assert::assertEquals('someApplication|tagged', $updatedChannel->getTag());
     }
 
     /**

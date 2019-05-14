@@ -1,7 +1,7 @@
 {
   "name": "gockets-project/gockets-php",
   "type": "library",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "PHP client for Gockets https://github.com/gockets-project/gockets",
   "keywords": ["gockets", "socket", "websocket", "php websocket"],
   "require": {

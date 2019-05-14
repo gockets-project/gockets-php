@@ -53,6 +53,7 @@ final class ChannelAdapter implements AdapterInterface
             $channel->publisher_token,
             $channel->subscriber_token,
             $channel->subscriber_message_hook_url,
+            $channel->tag,
             $channel->listeners
         );
     }
